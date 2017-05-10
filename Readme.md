@@ -445,7 +445,7 @@ class Singleton(object):
     def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
             orig = super(Singleton, cls)
-            cls._instance = orig.__new__(cls, *args, **kw)
+            cls._instance = orig.__new__(*args, **kw)
         return cls._instance
 
 class MyClass(Singleton):
@@ -461,7 +461,7 @@ class MyClass(Singleton):
 class Borg(object):
     _state = {}
     def __new__(cls, *args, **kw):
-        ob = super(Borg, cls).__new__(cls, *args, **kw)
+        ob = super(Borg, cls).__new__(*args, **kw)
         ob.__dict__ = cls._state
         return ob
 
